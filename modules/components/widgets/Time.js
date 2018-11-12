@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { TimePicker } from 'antd';
 import moment from 'moment';
 import { LocaleProvider } from 'antd';
-import shallowCompare from 'react-addons-shallow-compare';
 
 
-export default class TimeWidget extends Component {
+
+export default class TimeWidget extends PureComponent {
     static propTypes = {
         setValue: PropTypes.func.isRequired,
         timeFormat: PropTypes.string,
@@ -19,7 +19,7 @@ export default class TimeWidget extends Component {
         customProps: PropTypes.object,
     };
 
-    shouldComponentUpdate = shallowCompare;
+    
 
     constructor(props) {
         super(props);

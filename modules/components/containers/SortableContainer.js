@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { createStore } from 'redux';
 import {Provider, Connector, connect} from 'react-redux';
-import shallowCompare from 'react-addons-shallow-compare';
+
 import size from 'lodash/size';
 import {getFieldConfig} from "../../utils/configUtils";
 import {getFlatTree} from "../../utils/treeUtils";
@@ -13,7 +13,7 @@ import * as actions from '../../actions';
 
 
 export default (Builder, CanMoveFn = null) => {
-  class ConnectedSortableContainer extends Component {
+  class ConnectedSortableContainer extends PureComponent {
 
     static propTypes = {
       tree: PropTypes.instanceOf(Immutable.Map).isRequired,
@@ -27,7 +27,7 @@ export default (Builder, CanMoveFn = null) => {
         this.componentWillReceiveProps(props);
     }
 
-    shouldComponentUpdate = shallowCompare;
+    
 
     componentWillReceiveProps(nextProps) {
         this.tree = getFlatTree(nextProps.tree);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import createTreeStore from '../stores/tree';
 import {createStore} from 'redux';
@@ -10,15 +10,14 @@ import {bindActionCreators} from "../utils/stuff";
 import {validateTree} from "../utils/validation";
 import {queryString} from "../utils/queryString";
 import {defaultRoot} from "../utils/defaultUtils";
-import { LocaleProvider } from 'antd';
 import Immutable from 'immutable';
 
 
-class ConnectedQuery extends Component {
+class ConnectedQuery extends PureComponent {
     static propTypes = {
         config: PropTypes.object.isRequired,
         onChange: PropTypes.func,
-        get_children: PropTypes.func,
+        children: PropTypes.func,
         tree: PropTypes.instanceOf(Immutable.Map),
         //dispatch: PropTypes.func.isRequired,
     };
@@ -69,16 +68,14 @@ class ConnectedQuery extends Component {
     }
 
     render() {
-        const {config, tree, get_children, dispatch, ...props} = this.props;
+        const {config, tree, children, dispatch, ...props} = this.props;
         const validatedTree = this.validatedTree;
-        return <div>
-            {get_children({
-                tree: this.validatedTree,
-                actions: this.actions,
-                config: config,
-                dispatch: dispatch
-            })}
-        </div>
+        return children({
+            tree: this.validatedTree,
+            actions: this.actions,
+            config: config,
+            dispatch: dispatch
+        });
     }
 }
 
@@ -91,7 +88,7 @@ const QueryContainer = connect(
 )(ConnectedQuery);
 
 
-export default class Query extends Component {
+export default class Query extends PureComponent {
     static propTypes = {
         //config
         conjunctions: PropTypes.object.isRequired,
@@ -102,7 +99,7 @@ export default class Query extends Component {
         settings: PropTypes.object.isRequired,
 
         onChange: PropTypes.func,
-        get_children: PropTypes.func,
+        children: PropTypes.func,
         value: PropTypes.instanceOf(Immutable.Map),
     };
 
@@ -146,21 +143,19 @@ export default class Query extends Component {
     }
 
     render() {
-        const {conjunctions, fields, types, operators, widgets, settings, get_children, onChange, value, tree, children, ...props} = this.props;
+        const {conjunctions, fields, types, operators, widgets, settings, children, onChange, value, tree, ...props} = this.props;
         let config = {conjunctions, fields, types, operators, widgets, settings};
         config = extendConfig(config);
 
         return (
-            <LocaleProvider locale={config.settings.locale.antd}>
                 <Provider store={this.state.store}>
                     <QueryContainer
                       store={this.state.store}
-                      get_children={get_children}
                       config={config}
                       onChange={onChange}
+                      children={children}
                     />
                 </Provider>
-            </LocaleProvider>
         )
     }
 }

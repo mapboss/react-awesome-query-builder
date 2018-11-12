@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import Item from '../components/Item';
@@ -7,7 +7,7 @@ import {getTotalNodesCountInTree} from "../utils/treeUtils";
 
 
 @SortableContainer
-export default class Builder extends Component {
+export default class Builder extends PureComponent {
   static propTypes = {
     tree: PropTypes.instanceOf(Immutable.Map).isRequired,
     config: PropTypes.object.isRequired,

@@ -4,7 +4,7 @@ import Demo from './demo/demo.js';
 
 window.React = React;
 
-class App extends Component {
+class App extends PureComponent {
     render() {
         return (
             <div>{this.props.children}</div>

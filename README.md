@@ -53,7 +53,7 @@ import 'react-awesome-query-builder/css/styles.scss';
 import 'react-awesome-query-builder/css/compact_styles.scss';
 import 'react-awesome-query-builder/css/denormalize.scss';
 
-class DemoQueryBuilder extends Component {
+class DemoQueryBuilder extends PureComponent {
     render() {                
         return (
             <div>

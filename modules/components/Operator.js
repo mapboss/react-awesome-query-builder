@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import shallowCompare from 'react-addons-shallow-compare';
+
 import {getFieldConfig, getFieldPath, getFieldPathLabels} from "../utils/configUtils";
 import {calcTextWidth, BUILT_IN_PLACEMENTS} from "../utils/stuff";
 import { Menu, Dropdown, Icon, Tooltip, Button, Select } from 'antd';
@@ -13,10 +13,10 @@ import last from 'lodash/last';
 import keys from 'lodash/keys';
 import pickBy from 'lodash/pickBy';
 import mapValues from 'lodash/mapValues';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 
-export default class Operator extends Component {
+
+export default class Operator extends PureComponent {
   static propTypes = {
     config: PropTypes.object.isRequired,
     selectedField: PropTypes.string,

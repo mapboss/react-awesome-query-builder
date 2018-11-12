@@ -48,7 +48,7 @@ let ruleset = {
 */
 
 
-export default class DemoQueryBuilder extends Component {
+export default class DemoQueryBuilder extends PureComponent {
     getChildren(props) {
         const jsonStyle = { backgroundColor: 'darkgrey', margin: '10px', padding: '10px' } 
         return (

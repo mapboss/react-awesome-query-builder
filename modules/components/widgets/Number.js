@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { InputNumber, Col } from 'antd';
 import 'antd/lib/date-picker/style';
 import {getFieldConfig} from '../../utils/configUtils';
-import shallowCompare from 'react-addons-shallow-compare';
 
-export default class NumberWidget extends Component {
+
+export default class NumberWidget extends PureComponent {
   static propTypes = {
     setValue: PropTypes.func.isRequired,
     min: PropTypes.number,
@@ -19,7 +19,7 @@ export default class NumberWidget extends Component {
     customProps: PropTypes.object,
   };
 
-  shouldComponentUpdate = shallowCompare;
+  
 
   handleChange = (val) => {
     if (val === '')

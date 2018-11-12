@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import shallowCompare from 'react-addons-shallow-compare';
+
 import RuleContainer from './containers/RuleContainer';
 import Field from './Field';
 import Operator from './Operator';
@@ -15,12 +15,12 @@ import {getFieldConfig, getFieldPath, getFieldPathLabels, getOperatorConfig, get
 import size from 'lodash/size';
 var stringify = require('json-stringify-safe');
 const classNames = require('classnames');
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+
 import {Provider, Connector, connect} from 'react-redux';
 
 
 @RuleContainer
-class Rule extends Component {
+class Rule extends PureComponent {
     static propTypes = {
         isForDrag: PropTypes.bool,
         selectedField: PropTypes.string,
@@ -44,8 +44,8 @@ class Rule extends Component {
         dragging: PropTypes.object, //{id, x, y, w, h}
     };
 
-    pureShouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    shouldComponentUpdate = this.pureShouldComponentUpdate;
+    
+    
 
 
     constructor(props) {

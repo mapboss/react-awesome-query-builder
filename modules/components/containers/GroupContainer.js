@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import shallowCompare from 'react-addons-shallow-compare';
+
 import mapValues from 'lodash/mapValues';
 import Immutable from 'immutable';
 var stringify = require('json-stringify-safe');
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+
 import {Provider, Connector, connect} from 'react-redux';
 
 
@@ -29,29 +29,25 @@ export default (Group) => {
       this.conjunctionOptions = this._getConjunctionOptions(props);
     }
 
-    pureShouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    //shouldComponentUpdate = this.pureShouldComponentUpdate;
+    
+    
 
     shouldComponentUpdate(nextProps, nextState) {
         let prevProps = this.props;
         let prevState = this.state;
-
-        let should = this.pureShouldComponentUpdate(nextProps, nextState);
-        if (should) {
-          if (prevState == nextState && prevProps != nextProps) {
-            let chs = [];
-            for (let k in nextProps) {
-                let changed = (nextProps[k] != prevProps[k]);
-                if (k == 'dragging' && (nextProps.dragging.id || prevProps.dragging.id) != nextProps.id) {
-                  changed = false; //dragging another item -> ignore
-                }
-                if (changed) {
-                  chs.push(k);
-                }
-            }
-            if (!chs.length)
-                should = false;
+        let should = nextProps != prevProps || prevState != nextState
+        if (prevState == nextState && prevProps != nextProps) {
+          let chs = [];
+          for (let k in nextProps) {
+              let changed = (nextProps[k] != prevProps[k]);
+              if (k == 'dragging' && (nextProps.dragging.id || prevProps.dragging.id) != nextProps.id) {
+                changed = false; //dragging another item -> ignore
+              }
+              if (changed) {
+                chs.push(k);
+              }
           }
+          should = Boolean(chs.length);
         }
         
         return should;

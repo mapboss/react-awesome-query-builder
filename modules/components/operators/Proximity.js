@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import shallowCompare from 'react-addons-shallow-compare';
+
 import range from 'lodash/range';
 import { Select } from 'antd';
 const Option = Select.Option;
 import Immutable from 'immutable';
 
-export default class Proximity extends Component {
+export default class Proximity extends PureComponent {
   static propTypes = {
     config: PropTypes.object.isRequired,
     setOption: PropTypes.func.isRequired,
@@ -20,7 +20,7 @@ export default class Proximity extends Component {
     //children
   };
 
-  shouldComponentUpdate = shallowCompare;
+  
 
   handleChange = (value) => {
     this.props.setOption('proximity', value);

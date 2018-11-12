@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker } from 'antd';
 const { MonthPicker, RangePicker } = DatePicker;
 import moment from 'moment';
-import shallowCompare from 'react-addons-shallow-compare';
 
 
-export default class DateTimeWidget extends Component {
+
+export default class DateTimeWidget extends PureComponent {
     static propTypes = {
         setValue: PropTypes.func.isRequired,
         timeFormat: PropTypes.string,
@@ -20,7 +20,7 @@ export default class DateTimeWidget extends Component {
         customProps: PropTypes.object,
     };
 
-    shouldComponentUpdate = shallowCompare;
+    
 
     constructor(props) {
         super(props);

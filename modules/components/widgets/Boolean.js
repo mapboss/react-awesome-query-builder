@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { Switch, Icon } from 'antd';
-import shallowCompare from 'react-addons-shallow-compare';
 
-export default class BooleanWidget extends Component {
+
+export default class BooleanWidget extends PureComponent {
     static propTypes = {
         setValue: PropTypes.func.isRequired,
         labelYes: PropTypes.string,
@@ -15,7 +15,7 @@ export default class BooleanWidget extends Component {
         customProps: PropTypes.object,
     }
 
-    shouldComponentUpdate = shallowCompare;
+    
 
     handleChange = (val) => {
         this.props.setValue(val);

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import shallowCompare from 'react-addons-shallow-compare';
+
 import {getFieldConfig, getFieldPath, getFieldPathLabels} from "../utils/configUtils";
 import {calcTextWidth, truncateString, BUILT_IN_PLACEMENTS} from "../utils/stuff";
 import { Menu, Dropdown, Icon, Tooltip, Button, Select } from 'antd';
@@ -11,10 +11,10 @@ const DropdownButton = Dropdown.Button;
 import map from 'lodash/map';
 import last from 'lodash/last';
 import keys from 'lodash/keys';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 
-export default class Field extends Component {
+
+export default class Field extends PureComponent {
   static propTypes = {
     config: PropTypes.object.isRequired,
     selectedField: PropTypes.string,

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { Input, Col } from 'antd';
-import shallowCompare from 'react-addons-shallow-compare';
 
-export default class TextWidget extends Component {
+
+export default class TextWidget extends PureComponent {
   static propTypes = {
     setValue: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
@@ -14,7 +14,7 @@ export default class TextWidget extends Component {
     customProps: PropTypes.object,
   };
 
-  shouldComponentUpdate = shallowCompare;
+  
 
   handleChange = () => {
     this.props.setValue(ReactDOM.findDOMNode(this.refs.text).value);

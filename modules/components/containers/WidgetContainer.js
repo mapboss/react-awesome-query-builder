@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
-import shallowCompare from 'react-addons-shallow-compare';
+
 import range from 'lodash/range';
 import map from 'lodash/map';
 import {
@@ -14,7 +14,7 @@ const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
 export default (Widget) => {
-    return class WidgetContainer extends Component {
+    return class WidgetContainer extends PureComponent {
         static propTypes = {
             config: PropTypes.object.isRequired,
             value: PropTypes.instanceOf(Immutable.List).isRequired,
@@ -62,7 +62,7 @@ export default (Widget) => {
             this.props.setValueSrc(delta, srcKey);
         }
 
-        shouldComponentUpdate = shallowCompare;
+        
 
         renderWidget = (delta, valueSrc, widget) => {
             const fieldDefinition = getFieldConfig(this.props.field, this.props.config);

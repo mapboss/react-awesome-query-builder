@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import map from 'lodash/map';
@@ -6,9 +6,9 @@ import {getFieldConfig} from '../../utils/configUtils';
 import {calcTextWidth} from '../../utils/stuff';
 import { Select } from 'antd';
 const Option = Select.Option;
-import shallowCompare from 'react-addons-shallow-compare';
 
-export default class SelectWidget extends Component {
+
+export default class SelectWidget extends PureComponent {
   static propTypes = {
     setValue: PropTypes.func.isRequired,
     config: PropTypes.object.isRequired,
@@ -17,7 +17,7 @@ export default class SelectWidget extends Component {
     customProps: PropTypes.object,
   };
 
-  shouldComponentUpdate = shallowCompare;
+  
 
   handleChange = (val) => {
     this.props.setValue(val);

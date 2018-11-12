@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import shallowCompare from 'react-addons-shallow-compare';
+
 import {
   getFieldConfig, getFieldPath, getFieldPathLabels, getValueSourcesForFieldOp, getWidgetForFieldOp
 } from "../../utils/configUtils";
@@ -17,7 +17,7 @@ import clone from 'clone';
 
 //tip: this.props.value - right value, this.props.field - left value
 
-export default class ValueField extends Component {
+export default class ValueField extends PureComponent {
   static propTypes = {
     setValue: PropTypes.func.isRequired,
     renderAsDropdown: PropTypes.bool,
@@ -28,7 +28,7 @@ export default class ValueField extends Component {
     customProps: PropTypes.object,
   };
 
-  shouldComponentUpdate = shallowCompare;
+  
 
   curFieldOpts() {
       return Object.assign({}, {label: this.props.value}, getFieldConfig(this.props.value, this.props.config) || {});

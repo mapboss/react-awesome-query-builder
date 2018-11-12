@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import shallowCompare from 'react-addons-shallow-compare';
+
 import map from 'lodash/map';
 import startsWith from 'lodash/startsWith'
 import GroupContainer from './containers/GroupContainer';
@@ -10,7 +10,7 @@ const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const classNames = require('classnames');
 import Immutable from 'immutable';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+
 import { Provider, Connector, connect } from 'react-redux';
 import Item from './Item';
 
@@ -27,7 +27,7 @@ export const groupActionsPositionList = {
 const defaultPosition = 'topRight'
 
 @GroupContainer
-class Group extends Component {
+class Group extends PureComponent {
   static propTypes = {
     isForDrag: PropTypes.bool,
     //tree: PropTypes.instanceOf(Immutable.Map).isRequired,
@@ -53,8 +53,8 @@ class Group extends Component {
     dragging: PropTypes.object, //{id, x, y, w, h}
   };
 
-  pureShouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  shouldComponentUpdate = this.pureShouldComponentUpdate;
+  
+  
 
   constructor(props) {
     super(props);
