@@ -9,13 +9,9 @@ Object.defineProperty(exports, "Query", {
     return _Query.default;
   }
 });
-exports.Utils = exports.Operators = void 0;
+exports.Utils = void 0;
 
 var _Query = _interopRequireDefault(require("./components/Query"));
-
-var _Operators = _interopRequireWildcard(require("./components/operators"));
-
-exports.Operators = _Operators;
 
 var _Utils = _interopRequireWildcard(require("./utils"));
 

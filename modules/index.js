@@ -3,6 +3,6 @@ export { default as Query } from './components/Query';
 //export { default as Preview } from './components/Preview';
 
 //export * as Widgets from './components/widgets/index.js';
-export * as Operators from './components/operators';
+//export * as Operators from './components/operators';
 export * as Utils from './utils';
 
